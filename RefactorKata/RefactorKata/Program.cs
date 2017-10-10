@@ -1,21 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace RefactorKata
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            //This is intentionally bad : (  Let's Refactor!
-            System.Data.SqlClient.SqlConnection Conn = new System.Data.SqlClient.SqlConnection("Server=.;Database=myDataBase;User Id=myUsername;Password = myPassword;");
+            var products = GetProducts();
 
-            System.Data.SqlClient.SqlCommand cmd = Conn.CreateCommand();
+            foreach (var product in products)
+            {
+                Console.WriteLine("This product is called: " + product.Name);
+            }
+        }
+        {
+            var conn = new SqlConnection("Server=.;Database=myDataBase;User Id=myUsername;Password = myPassword;");
+
+            SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "select * from Products";
             /*
              * cmd.CommandText = "Select * from Invoices";
              */
-            System.Data.SqlClient.SqlDataReader reader = cmd.ExecuteReader();
+            SqlDataReader reader = cmd.ExecuteReader();
             List<Product> products = new List<Product>();
 
             //TODO: Replace with Dapper
