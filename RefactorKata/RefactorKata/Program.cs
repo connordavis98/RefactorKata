@@ -15,6 +15,7 @@ namespace RefactorKata
                 Console.WriteLine("This product is called: " + product.Name);
             }
         }
+          private static IEnumerable<Product> (GetProducts)
         {
             var conn = new SqlConnection("Server=.;Database=myDataBase;User Id=myUsername;Password = myPassword;");
 
