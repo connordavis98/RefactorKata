@@ -1,6 +1,6 @@
 ﻿namespace RefactorKata
 {
-    internal class products
+    internal class Products
     {
     }
 }
